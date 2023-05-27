@@ -64,6 +64,8 @@ Experiments run on:
   - **Results**
     ![Gradients](./figs/hypothesis_2_learnable.png)
 
+    The graphs shown are mean abs gradient for the lower encoder layer. We can see that the mean abs gradient value decreases as we stack more MHSA layers
+
 2. Can you design a learnable positional encoding method?
 
    Although there might be different methods in literature to generate learnable positional encodings. The simplest is to use `torch.nn.Embedding` which uses a simple lookup table that stores embeddings of a fixed dictionary and size. We can use this by using `seq len` param value for the `num_embeddings` argument. This is a learnable parameter meaning `requires_grad=True` and hence would be updated during backpropagation.
