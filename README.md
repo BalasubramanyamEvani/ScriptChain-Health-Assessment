@@ -128,3 +128,7 @@ The following command-line arguments can be used:
 - `--pe_learnable`: Flag to enable learnable positional encoding (commented out by default)
 
 Note: You can comment out the `--pe_learnable` flag to use the default non-learnable positional encoding.
+
+## References
+
+1. Attention Is All You Need: https://arxiv.org/abs/1706.03762
