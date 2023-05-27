@@ -66,6 +66,14 @@ Experiments run on:
 
     The graphs shown are mean abs gradient for the lower encoder layer. We can see that the mean abs gradient value decreases as we stack more MHSA layers
 
+**Apart from these hypotheses. There are multiple other factors which might arise:**
+
+- The model becoming too complex which might cause overfitting
+- Memory requirements for storing self attention layers, this was mentioned partially in the video
+  demo where I mentioned my GPU couldn't support more than 512 seq length and more than 64 stacked layers
+
+A better comparison can be done using an actual dataset.
+
 2. Can you design a learnable positional encoding method?
 
    Although there might be different methods in literature to generate learnable positional encodings. The simplest is to use `torch.nn.Embedding` which uses a simple lookup table that stores embeddings of a fixed dictionary and size. We can use this by using `seq len` param value for the `num_embeddings` argument. This is a learnable parameter meaning `requires_grad=True` and hence would be updated during backpropagation.
