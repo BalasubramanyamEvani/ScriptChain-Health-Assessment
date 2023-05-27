@@ -1,5 +1,14 @@
 ## Environment Setup
 
+Wandb setup information
+
+1. Make sure `WANDB_API_KEY` is set
+
+2. Or, in `main.py`. Make sure to add wandb api key
+   ```python
+   wandb.login(key="")
+   ```
+
 To set up the conda environment for this project, do the following
 
 1. Open a terminal or command prompt.
