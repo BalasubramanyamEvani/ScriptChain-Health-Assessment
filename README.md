@@ -61,6 +61,37 @@ Experiments run on:
 
    Since, the original intent of the problem statement was not to run on an actual dataset, I have assumed a dummy dataset to test the above. The `LearnablePositionalEncoding` does get updated during backpropagation but to concretely see whether it is comparable to non-learnable Positional encoding, I'd need to test it on an actual dataset. Due to time constraints I haven't been able to do so.
 
+   ```python
+   class LearnablePositionalEncoding(torch.nn.Module):
+    def __init__(self, seq_len, in_dim, dropout_p=0.1) -> None:
+        """
+        Learnable positional encoding layer.
+
+        Parameters:
+        - seq_len (int): The length of the input sequence.
+        - in_dim (int): The input dimension.
+        - dropout_p (float, optional): The dropout probability. Defaults to 0.1.
+        """
+        super(LearnablePositionalEncoding, self).__init__()
+        self.dropout = torch.nn.Dropout(dropout_p)
+        self.positions = torch.arange(seq_len).unsqueeze(0)
+        self.pe = torch.nn.Embedding(seq_len, in_dim)
+
+    def forward(self, x):
+        """
+        Forward pass of the learnable positional encoding layer.
+
+        Parameters:
+        - x (torch.Tensor): The input tensor.
+
+        Returns:
+        - torch.Tensor: The output tensor after adding positional encoding.
+        """
+        x = x + self.pe(self.positions.to(x.device))
+        out = self.dropout(x)
+        return out
+   ```
+
 ## How to use script to replicate results
 
 ### Shell File: `run.sh` under scripts
